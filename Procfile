@@ -1,0 +1,1 @@
+web: gunicorn yoga2.wsgi
