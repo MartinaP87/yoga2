@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="main-image">
+    <h1>Classes:</h1>
+    <div class="row">
+        {% for yoga_class_item in yoga_types_list %}
+        <div class="col-4">    
+            <div class="card">
+                <img class="card-img-top" src="{{ yoga_class_item.featured_image.url }}" alt="Card image cap">
+                <div class="card-body">
+                    <h3 class="card-title">{{ yoga_class_item.title }}</h3>
+                    <p class="card-text">{{ yoga_class_item.introduction | safe }}</p>
+                    <a href="#" class="btn btn-primary">More</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="row">
+        <div class="col-8 offset-2">
+            {% for yoga_class in yoga_classes %}
+            <p>{{ yoga_class.yoga_type }}</p>
+            <p>{{ yoga_class.days }}</p>
+            <p>{{ yoga_class.times }}</p>
+            <p>{{ yoga_class.available_spaces }}</p>
+            {% endfor %}
+        </div>
+        <div>
+            {{ yoga.section.yoga_type }}
+            {{ reservations.member }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-8 offset-2">
+            <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Monday</th>
+                    <th scope="col">Tuesday</th>
+                    <th scope="col">Wednesday</th>
+                    <th scope="col">Thursday</th>
+                    <th scope="col">Friday</th>
+                    <th scope="col">Saturday</th>
+                    <th scope="col">Sunday</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">9:00 - 10:00</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">10:00 - 11:00</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">11:00 - 12:00</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">14:00 - 15:00</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">15:00 - 16:00</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">16:00 - 17:00</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">17:00 - 18:00</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">20:00 - 21:00</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+    <div>
+      {% if user.is_authenticated %}
+
+      <h3>Leave a comment:</h3>
+      <p>Posting as: {{ user.username }}</p>
+      <form method="post" style="margin-top: 1.3em;">
+          <!-- {{ reservation_form | crispy }} -->
+          {% csrf_token %}
+          <button type="submit" class="btn btn-signup btn-lg">Submit</button>
+      </form>
+      {% endif %}
+    </div>
+
+</div>
+
+
+{%endblock%}
